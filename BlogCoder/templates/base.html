@@ -8,28 +8,28 @@
     {% block title %}
     <title>Document</title>
     {% endblock title %}
-    <link rel="stylesheet" href={% static 'desafio/css/styles.css' %}>
+    <link rel="stylesheet" href="{% static 'desafio/css/styles.css' %}">
 </head>
 <body>
     <header>
         <nav>
             <ul id="menu">
-            <li><a href={% url 'index' %}>Inicio</a></li>
-            <li><a href={% url 'sobre_mi' %}>Sobre Mi</a></li>
-            <li><a href={% url 'list_peliculas' %}>Crear Pelicula</a></li>
+            <li><a href="{% url 'index' %}">Inicio</a></li>
+            <li><a href="{% url 'sobre_mi' %}">Sobre Mi</a></li>
+            <li><a href="{% url 'list_peliculas' %}">Crear Pelicula</a></li>
             {% if request.user.is_authenticated %}
             <li>
-                <a href={% url 'perfil' %}>
+                <a href="{% url 'perfil' %}">
                     {% if request.user.masdatosusuario.avatar %}
                     <img src={{request.user.masdatosusuario.avatar.url}} alt="" height="50px">
                     {% endif %}
                     {{request.user.username}}
                 </a>
             </li>
-            <li><a href={% url 'logout' %}>Logout</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
             {% else %}
-            <li><a href={% url 'login' %}>Login</a></li>
-            <li><a href={% url 'register' %}>Register</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'register' %}">Register</a></li>
             {% endif %}
             </ul>
         </nav>

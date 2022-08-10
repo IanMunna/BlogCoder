@@ -1,4 +1,4 @@
-{% extends 'main.html' %}
+{% extends 'base.html' %}
 {% block title %}
 <title>Eliminar Pelicula</title>
 {% endblock title %}
@@ -10,10 +10,10 @@
 
 {% block after_header %}
 <p>
-    <a href="{% url 'list_peliculas' %}">Volver</a>
+    <a href={% url 'list_peliculas' %}>Volver</a>
 </p>
 <p>
-    <form action="{% url 'eliminar_pelicula' object.id %}" method="post">
+    <form action={% url 'eliminar_pelicula' object.id %} method="post">
         {% csrf_token %}
         ¿Esta seguro que quiere eliminar la pelicula?
         <button>Confirmar</button>

@@ -1,4 +1,4 @@
-{% extends 'main.html' %}
+{% extends 'base.html' %}
 {% block title %}
 <title>Listado de Peliculas</title>
 {% endblock title %}
@@ -8,10 +8,10 @@
 
 {% block after_header %}
 <p>
-    <a href="{% url 'crear_pelicula' %}">Crear Pelicula</a>
+    <a href={% url 'crear_pelicula' %} class="btn btn-secondary">Crear Pelicula</a>
 </p>
 <p>
-    <form action="{% url 'list_peliculas' %}">
+    <form action={% url 'list_peliculas' %}>
         {{form}}
         <button>Buscar</button>
     </form>
@@ -22,9 +22,9 @@
         {% for pelicula in object_list %}
         <li>
         {{pelicula}}
-        <a href="{% url 'mostrar_pelicula' pelicula.id %}">Mostrar</a>
-        <a href="{% url 'editar_pelicula' pelicula.id %}">Editar</a>
-        <a href="{% url 'eliminar_pelicula' pelicula.id %}">Eliminar</a>
+        <a href={% url 'mostrar_pelicula' pelicula.id %}>Mostrar</a>
+        <a href={% url 'editar_pelicula' pelicula.id %}>Editar</a>
+        <a href={% url 'eliminar_pelicula' pelicula.id %}>Eliminar</a>
         </li>
         {% endfor %}
     </ul>

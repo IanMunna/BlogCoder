@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login as django_login
-from Accounts.models import MoreDataUser
+from Accounts.models import MasDatosUsuario
 from .forms import UserrCreationForm, UserrEditForm
 from django.contrib.auth.decorators import login_required
 
@@ -52,7 +52,7 @@ def perfil(request):
 def editar_perfil(request):
     
     user = request.user
-    mas_datos_usuario, _ = MoreDataUser.objects.get_or_create(user=user)
+    mas_datos_usuario, _ = MasDatosUsuario.objects.get_or_create(user=user)
     
     if request.method == 'POST':
         form = UserrEditForm(request.POST, request.FILES)

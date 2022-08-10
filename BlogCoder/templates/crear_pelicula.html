@@ -6,3 +6,18 @@
 <h1>Creacion de Peliculas</h1>
 {% endblock h1%}
 
+{% block after_header %}
+<p>
+    <a href={% url 'list_peliculas' %}>Volver</a>
+</p>
+<p>
+    <form action={% url 'crear_pelicula' %} method="post" enctype='multipart/form-data'>
+        {% csrf_token %}
+        <table>
+            {{form.media}}
+            {{form.as_table}}           
+        </table>
+        <button>Crear</button>
+    </form>
+</p>
+{% endblock after_header %}

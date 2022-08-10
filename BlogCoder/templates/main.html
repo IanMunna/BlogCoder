@@ -15,7 +15,7 @@
         <nav>
             <ul id="menu">
             <li><a href={% url 'index' %}>Inicio</a></li>
-            <li><a href={% url 'sobre_nosotros' %}>Sobre Mi</a></li>
+            <li><a href={% url 'sobre_mi' %}>Sobre Mi</a></li>
             <li><a href={% url 'list_peliculas' %}>Crear Pelicula</a></li>
             {% if request.user.is_authenticated %}
             <li>

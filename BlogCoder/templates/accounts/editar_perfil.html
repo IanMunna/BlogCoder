@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+{% block title %}
+<title>Editar Perfil</title>
+{% endblock title %}
+{% block h1 %}
+<h1>Editar Perfil de {{request.user.username}}</h1>
+{% endblock h1 %}
+
+{% block after_header %}
+<p>
+    <form action={% url 'editar_perfil' %} method="post" enctype='multipart/form-data'>
+        {% csrf_token %}
+        <table>
+            {{form.media}}
+            {{form.as_table}}           
+        </table>
+        <button>Editar</button>
+    </form>
+</p>
+{% endblock after_header %}

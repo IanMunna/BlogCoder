@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+{% block title %}
+<title>Perfil</title>
+{% endblock title %}
+{% block h1 %}
+<h1>Perfil del usuario {{request.user.username}}</h1>
+{% endblock h1 %}
+
+{% block after_header %}
+<p>
+    <ul>
+        <li>Nombre: {{request.user.first_name}}</li>
+        <li>Apellido: {{request.user.last_name}}</li>
+        <li>Email: {{request.user.email}}</li>
+        <li>Pagina: <a href="{{ request.user.moredatauser.link_pagina }}">Link</a></li>
+        <li>Descripcion: {{request.user.moredatauser.descripcion | safe}}</li>
+        <li>
+            <p>Avatar:</p>
+            {% if request.user.moredatauser.avatar %}
+            <img src={{request.user.moredatauser.avatar.url}} alt="" height="250px">
+            {% endif %}
+        </li>
+    </ul>
+</p>
+<p>
+    <a href={% url 'editar_perfil' %}>Editar datos</a>
+</p>
+{% endblock after_header %}

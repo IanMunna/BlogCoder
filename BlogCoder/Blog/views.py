@@ -43,6 +43,21 @@ class CrearPelicula(LoginRequiredMixin, CreateView):
         Pelicula.objects.create(titulo= self.request.POST['titulo'], trama= self.request.POST['trama'], imagen= self.request.Files['imagen'], director= user)
         return redirect(self.success_url)
 
-    
+class EditarPelicula(LoginRequiredMixin, UpdateView):
+    model=Pelicula
+    template_name = 'editar_pelicula.html'
+    success_url = '/peliculas'
+    fields = ['titulo', 'trama', 'imagen']
+
+
+class EliminarPelicula(LoginRequiredMixin, DeleteView):
+    model=Pelicula
+    template_name = 'eliminar_pelicula.html'
+    success_url = '/pelicula'
+
+
+class MostrarPelicula(DetailView):
+    model = Pelicula
+    template_name = 'mostrar_pelicula.html'
 
 

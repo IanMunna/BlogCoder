@@ -1,26 +1,35 @@
 {% extends 'main.html' %}
 {% block title %}
-<title>Editar Pelicula</title>
+<title>Listado de Peliculas</title>
 {% endblock title %}
-
 {% block h1 %}
-<h1>
-    Editar Pelicula
-</h1>
+<h1>Listado de Peliculas</h1>
 {% endblock h1 %}
 
 {% block after_header %}
 <p>
-    <a href={% url 'list_peliculas' %}>Volver</a>
+    <a href={% url 'crear_pelicula' %}>Crear Pelicula</a>
 </p>
 <p>
-    <form action={% url 'editar_peliculas' libro.id %} method="post" enctype='multipart/form-data'>
-        {% csrf_token %}
-        <table>
-            {{form.media}}
-            {{form.as_table}}
-        </table>
-        <button>Editar</button>
+    <form action={% url 'listado_peliculas' %}>
+        {{form}}
+        <button>Buscar</button>
     </form>
+</p>
+<p>
+    {% if object_list %}
+    <ul>
+        {% for pelicula in object_list %}
+        <li>
+        {{pelicula}}
+        <a href={% url 'mostrar_pelicula' pelicula.id %}>Mostrar</a>
+        <a href={% url 'editar_pelicula' pelicula.id %}>Editar</a>
+        <a href={% url 'eliminar_pelicula' pelicula.id %}>Eliminar</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    Sin datos que coincidan.
+    {% endif %}
 </p>
 {% endblock after_header %}

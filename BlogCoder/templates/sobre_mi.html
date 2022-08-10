@@ -1,26 +1,10 @@
 {% extends 'main.html' %}
-{% block title %}
-<title>Editar Pelicula</title>
-{% endblock title %}
-
 {% block h1 %}
-<h1>
-    Editar Pelicula
-</h1>
+<title>Sobre mi</title>
 {% endblock h1 %}
 
 {% block after_header %}
 <p>
-    <a href={% url 'list_peliculas' %}>Volver</a>
-</p>
-<p>
-    <form action={% url 'editar_peliculas' libro.id %} method="post" enctype='multipart/form-data'>
-        {% csrf_token %}
-        <table>
-            {{form.media}}
-            {{form.as_table}}
-        </table>
-        <button>Editar</button>
-    </form>
+    Mi nombre es Ian Munna Fourcade, tengo 22 años y soy un estudiante universitario que esta cursando la "tecnicatura en progamacion" en la UTN. Decidi comenzar en el mundo de la programacion ya que mi padre y mi tio son licenciados en sistemas por ende siempre fue algo cercano a mi.  
 </p>
 {% endblock after_header %}

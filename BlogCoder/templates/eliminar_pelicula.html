@@ -1,11 +1,10 @@
 {% extends 'main.html' %}
 {% block title %}
-<title>Editar Pelicula</title>
+<title>Eliminar Pelicula</title>
 {% endblock title %}
-
 {% block h1 %}
 <h1>
-    Editar Pelicula
+    Eliminar Pelicula
 </h1>
 {% endblock h1 %}
 
@@ -14,13 +13,10 @@
     <a href={% url 'list_peliculas' %}>Volver</a>
 </p>
 <p>
-    <form action={% url 'editar_peliculas' libro.id %} method="post" enctype='multipart/form-data'>
+    <form action={% url 'eliminar_peliculas' object.id %} method="post">
         {% csrf_token %}
-        <table>
-            {{form.media}}
-            {{form.as_table}}
-        </table>
-        <button>Editar</button>
+        ¿Esta seguro que quiere eliminar la pelicula?
+        <button>Confirmar</button>
     </form>
 </p>
 {% endblock after_header %}

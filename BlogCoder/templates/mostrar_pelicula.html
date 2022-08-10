@@ -1,11 +1,10 @@
 {% extends 'main.html' %}
 {% block title %}
-<title>Editar Pelicula</title>
+<title>Pelicula</title>
 {% endblock title %}
-
 {% block h1 %}
 <h1>
-    Editar Pelicula
+    Pelicula
 </h1>
 {% endblock h1 %}
 
@@ -14,13 +13,28 @@
     <a href={% url 'list_peliculas' %}>Volver</a>
 </p>
 <p>
-    <form action={% url 'editar_peliculas' libro.id %} method="post" enctype='multipart/form-data'>
-        {% csrf_token %}
-        <table>
-            {{form.media}}
-            {{form.as_table}}
-        </table>
-        <button>Editar</button>
-    </form>
+    <ul>
+        <li>
+            {{pelicula.titulo}}
+        </li>
+        <li>
+            {{pelicula.trama | safe}}
+        </li>
+        <li>
+            {{pelicula.fecha_estreno}}
+        </li>
+        <li>
+            {% if pelicula.imagen %}
+            <img src={{pelicula.imagen.url}} alt="" height="250px">
+            {% endif %}
+        </li>
+        <li>
+            {% if pelicula.director %}
+            Creado por {{pelicula.director}}
+            {% else %}
+            No se encontro al director
+            {% endif %}
+        </li>
+    </ul>
 </p>
 {% endblock after_header %}

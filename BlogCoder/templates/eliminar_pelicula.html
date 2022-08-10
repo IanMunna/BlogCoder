@@ -13,7 +13,7 @@
     <a href={% url 'list_peliculas' %}>Volver</a>
 </p>
 <p>
-    <form action={% url 'eliminar_peliculas' object.id %} method="post">
+    <form action={% url 'eliminar_pelicula' object.id %} method="post">
         {% csrf_token %}
         ¿Esta seguro que quiere eliminar la pelicula?
         <button>Confirmar</button>

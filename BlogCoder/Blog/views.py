@@ -15,6 +15,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 def inicio(request):
     return render(request, 'main.html')
 
+@login_required
+def sobre_mi(request):
+    return render(request, 'sobre_mi.html')
+
 class ListPeliculas(ListView):
     model=Pelicula
     template_name= 'list_peliculas.html'

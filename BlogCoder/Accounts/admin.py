@@ -1,6 +1,6 @@
 from django.contrib import admin
-from Accounts.models import MoreDataUser
+from Accounts.models import MasDatosUsuario
 
 # Register your models here.
 
-admin.site.register(MoreDataUser)
+admin.site.register(MasDatosUsuario)

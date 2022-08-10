@@ -13,7 +13,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 def inicio(request):
-    return render(request, 'main.html')
+    return render(request, 'base.html')
 
 @login_required
 def sobre_mi(request):

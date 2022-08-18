@@ -1,10 +1,17 @@
 {% extends 'base.html' %}
-{% block h1 %}
-<title>Sobre mi</title>
-{% endblock h1 %}
 
-{% block after_header %}
-<p>
-    Mi nombre es Ian Munna Fourcade, tengo 22 años y soy un estudiante universitario que esta cursando la "tecnicatura en progamacion" en la UTN. Decidi comenzar en el mundo de la programacion ya que mi padre y mi tio son licenciados en sistemas por ende siempre fue algo cercano a mi.  
-</p>
-{% endblock after_header %}
+
+{% block title %}
+    <title>Sobre mi</title>
+{% endblock title %}
+
+{% block texto_header %}
+        Sobre mi
+{% endblock texto_header %}
+
+
+{% block body %}
+    <p>
+        Mi nombre es Ian Munna Fourcade, tengo 22 años y soy un estudiante universitario que esta cursando la "tecnicatura en progamacion" en la UTN. Decidi comenzar en el mundo de la programacion ya que mi padre y mi tio son licenciados en sistemas por ende siempre fue algo cercano a mi.  
+    </p>
+{% endblock %}

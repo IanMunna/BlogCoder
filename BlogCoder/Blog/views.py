@@ -1,67 +1,63 @@
-from django.shortcuts import render, redirect
-from .forms import BusquedaPelicula, PeliculaF
-from .models import Pelicula
-from datetime import datetime
-from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
-from django.views.generic.list import ListView
-from django.views.generic.edit import DeleteView, UpdateView, CreateView
-from django.views.generic import DetailView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from Blog.models import Pelicula
+from .forms import FormBusquedaPelicula, FormPelicula
+from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Create your views here.
 
-def inicio(request):
-    return render(request, 'base.html')
-
-@login_required
-def sobre_mi(request):
-    return render(request, 'sobre_mi.html')
-
-class ListPeliculas(ListView):
-    model=Pelicula
-    template_name= 'list_peliculas.html'
+class ListadoPost(ListView):
+    model = Pelicula
+    template_name = 'list_peliculas.html'
 
     def get_queryset(self):
         titulo = self.request.GET.get('titulo', '')
-        if titulo: 
+        if titulo:
             object_list = self.model.objects.filter(titulo__icontains=titulo)
         else:
             object_list = self.model.objects.all()
         return object_list
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["form"] = BusquedaPelicula()
+        context["form"] = FormBusquedaPelicula()
         return context
 
+def inicio(request):
+
+    ultimos_diez_peliculas = Pelicula.objects.all().order_by('-id')[:10]
+
+    return render(request, 'index.html', {'list_peliculas': ultimos_diez_peliculas[:3], 'ultimos_diez': ultimos_diez_peliculas})
+
+
+def sobre_mi(request):
+    return render(request, 'sobre_mi.html')
+
 class CrearPelicula(LoginRequiredMixin, CreateView):
-    model=Pelicula
-    template_name= 'crear_pelicula.html'
-    success_url= '/peliculas'
-    fields= ['titulo', 'trama', 'imagen']
-    form_class: PeliculaF
+    model = Pelicula
+    form_class = FormPelicula
+    success_url = '/list_peliculas'
+    template_name = 'crear_pelicula.html'
+
     def form_valid(self, form):
-        user= User.objects.get(username= self.request.user)
-        Pelicula.objects.create(titulo= self.request.POST['titulo'], trama= self.request.POST['trama'], imagen= self.request.Files['imagen'], director= user)
-        return redirect(self.success_url)
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
 
 class EditarPelicula(LoginRequiredMixin, UpdateView):
-    model=Pelicula
+    model = Pelicula
+    form_class = FormPelicula
+    success_url = '/list_peliculas'
     template_name = 'editar_pelicula.html'
-    success_url = '/peliculas'
-    fields = ['titulo', 'trama', 'imagen']
 
 
 class EliminarPelicula(LoginRequiredMixin, DeleteView):
-    model=Pelicula
+    model = Pelicula
     template_name = 'eliminar_pelicula.html'
-    success_url = '/pelicula'
+    success_url = '/list_peliculas'
 
 
 class MostrarPelicula(DetailView):
     model = Pelicula
     template_name = 'mostrar_pelicula.html'
-
-

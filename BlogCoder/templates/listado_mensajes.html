@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Listado de Mensajes</title>
+{% endblock title %}
+
+{% block texto_header %}
+    Listado de Mensajes
+{% endblock texto_header %}
+
+{% block body %}
+
+<ul>
+    <li>
+        <a href="enviar_mensaje">Enviar Mensaje</a>
+    </li>
+</ul>
+
+
+<div style="width:800px;">
+    <ul>
+        <li>
+        <form action={% url 'listado_mensajes' %}>
+            {{form}}
+            <button>Buscar</button>
+        </form>
+        </li>
+    </ul>
+</div>
+
+<p>
+    <ul>
+    Recibidos
+    </ul>
+    {% if object_list %}
+        <ul>
+            {% for mensaje in object_list %}
+                {% if mensaje.destino|make_list == request.user.username|make_list%}
+                    <hr>
+                    <li>
+                        <a href="{% url 'mostrar_mensaje' mensaje.pk %}">{{ mensaje.asunto }}</a>
+                        - Enviado por: {{ mensaje.remitente }}
+                        - <a href="{% url 'eliminar_mensaje' mensaje.pk %}">Eliminar</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            <hr>
+
+        </ul>
+    {% else %}
+        <ul>
+            No se encontraron datos.
+        </ul>    {% endif %}
+</p>
+
+<p>
+    <ul>
+    Enviados
+    </ul>
+    {% if object_list %}
+        <ul>
+            {% for mensaje in object_list %}
+                {% if mensaje.remitente|make_list == request.user.username|make_list%}
+                    <hr>
+                    <li>
+                        <a href="{% url 'mostrar_mensaje' mensaje.pk %}">{{ mensaje.asunto }}</a>
+                        - Enviado a: {{ mensaje.destino }}
+                        - <a href="{% url 'eliminar_mensaje' mensaje.pk %}">Eliminar</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            <hr>
+
+        </ul>
+    {% else %}
+        <ul>
+            No se encontraron datos.
+        </ul>
+    {% endif %}
+</p>
+{% endblock body %}

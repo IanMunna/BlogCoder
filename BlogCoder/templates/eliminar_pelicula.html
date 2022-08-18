@@ -1,22 +1,25 @@
 {% extends 'base.html' %}
+
+
 {% block title %}
 <title>Eliminar Pelicula</title>
 {% endblock title %}
-{% block h1 %}
-<h1>
-    Eliminar Pelicula
-</h1>
-{% endblock h1 %}
 
-{% block after_header %}
+{% block texto_header %}
+    Eliminar Pelicula
+{% endblock texto_header %}
+
+
+{% block body %}
 <p>
-    <a href="{% url 'list_peliculas' %}">Volver</a>
+    <a href={% url 'list_peliculas' %}>Listado de Peliculas</a>
 </p>
-<p>
-    <form action="{% url 'eliminar_pelicula' object.id %}" method="post">
+
+<div class="form-group">
+    <form action={% url 'eliminar_pelicula' pelicula.id %} method="post">
         {% csrf_token %}
-        ¿Esta seguro que quiere eliminar la pelicula?
+        ¿Desea eliminar la pelicula?
         <button>Confirmar</button>
     </form>
-</p>
-{% endblock after_header %}
+</div>
+{% endblock %}

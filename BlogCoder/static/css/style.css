@@ -1,0 +1,181 @@
+@charset "UTF-8";
+.table {
+	display: flex;   
+	align-items: flex-start;
+	margin-top: 80px;
+}
+
+.table img {
+    width: 800px;
+    margin-right: 20px;
+}
+
+.subtitulo {
+  background-color: #e4ed6b;
+  text-align: center;
+}
+
+.subtitulo2 {
+  background-color: #e4ed6b;
+  text-align: center;
+}
+
+
+body {
+
+height: 100%;
+min-height: 1200px;
+        background-color: #e4ed6b;
+
+}
+
+.body_container{
+        background-color: #e4ed6b;
+}
+
+ul {
+  list-style-type: none;
+}
+
+div.top-header ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+div.top-header ul li {
+  float: left;
+}
+
+div.top-header ul li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+div.top-header ul li a:hover {
+  background-color: #111;
+}
+
+
+
+.page_title h1{
+    text-align:center;
+    background-color: #c4ba9d;
+    padding: 5px
+}
+
+
+
+
+
+form {border: 3px solid #f1f1f1;}
+
+.leftcolumn {
+  float: left;
+  width: 75%;
+}
+
+.rightcolumn {
+  float: left;
+  width: 25%;
+  padding-left: 20px;
+}
+
+
+.cardo {
+   background-color: #c4ba9d;
+   padding: 20px;
+   margin-top: 20px;
+   max-width:1200px;
+   border-style:solid;
+   border-color:#333;
+   justify-content:center;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+.truncate {
+  width: 500px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+div.crear_post_menu ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #c4ba9d;
+}
+
+div.crear_post_menu ul li {
+  float: left;
+}
+
+div.crear_post_menu ul li a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 1px 16px;
+  text-decoration: none;
+}
+
+
+div.crear_post_menu ul li a:hover {
+  background-color: #b0a68b;
+}
+
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+#menu{
+    margin: 0;
+    padding: 0;
+}
+header{
+    font-family: Helvetica;
+    width: 480px;
+    margin: 0 auto;
+}
+ul{
+    list-style: none;
+}
+#menu li>a{
+    background-color: rgb(93, 87, 87);
+    color: white;
+    padding: 10px;
+    display: block;
+    text-decoration: none;
+    min-width: 100px;
+}
+#menu li>a:hover{
+    color: #000;
+    background-color: #eaeaea;
+}
+#menu>li{
+    float: left;
+    text-align:center;
+}
+nav{
+    display: flex;
+}
+h1{
+    display: block;
+    text-align:center;
+}

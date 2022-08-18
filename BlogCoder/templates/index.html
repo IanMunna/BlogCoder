@@ -1,8 +1,52 @@
 {% extends 'base.html' %}
+
 {% block title %}
-<title>Blog Coder</title>
+<title>Inicio</title>
 {% endblock title %}
 
-{% block h1 %}
-<h1>Bienvenido al Inicio</h1>
-{% endblock h1 %}
+
+
+{% block body %}
+<div class="leftcolumn">
+    {% if Blog_pelicula %}
+        <ul>
+            {% for post in list_peliculas %}
+            <li>
+                <div class="cardo">
+                    <div class="titulo center"><h2><a href="{% url 'mostrar_pelicula' pelicula.pk %}">{{ pelicula.titulo|safe }}</a></h2></div>
+                    <div class="subtitulo center"><h5>{{ pelicula.subtitulo|safe }}, {{ pelicula.fecha_creacion|safe }} por {{ pelicula.autor|safe }}</h5></div>
+                    <div class="postimg center"><img src="{{ pelicula.imagen.url }}" alt="{{pelicula.titulo|safe}}" width="600" height="auto"></div>
+                    <div class="contenido center"><div class="truncate">{{ pelicula.contenido|safe }}</div></div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <ul>
+            <li>No hay publicaciones aun</li>
+        </ul>
+    {% endif %}
+</div>
+
+<div class="rightcolumn">
+
+        {% if Blog_pelicula %}
+        <ul>
+            <li>
+                <div class="cardo">
+                    <h3>Ultimas 10 Publicaciones</h3>
+                    {% for pelicula in ultimos_diez %}
+                        <div class="titulo"><h5><a href="{% url 'mostrar_pelicula' pelicula.pk %}">{{ pelicula.titulo|safe }}</a></h5></div>
+                    {% endfor %}
+                </div>
+            </li>
+
+        </ul>
+    {% else %}
+        <h3>Ultimas 10 Publicaciones</h3>
+        <h5>No hay publicaciones aun</h5>
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,40 +1,28 @@
 {% extends 'base.html' %}
-{% block title %}
-<title>Pelicula</title>
-{% endblock title %}
-{% block h1 %}
-<h1>
-    Pelicula
-</h1>
-{% endblock h1 %}
 
-{% block after_header %}
-<p>
-    <a href="{% url 'list_peliculas' %}">Volver</a>
-</p>
-<p>
-    <ul>
-        <li>
-            {{pelicula.titulo}}
-        </li>
-        <li>
-            {{pelicula.trama | safe}}
-        </li>
-        <li>
-            {{pelicula.fecha_estreno}}
-        </li>
-        <li>
-            {% if pelicula.imagen %}
-            <img src={{pelicula.imagen.url}} alt="" height="250px">
-            {% endif %}
-        </li>
-        <li>
-            {% if pelicula.director %}
-            Creado por {{pelicula.director}}
-            {% else %}
-            No se encontro al director
-            {% endif %}
-        </li>
-    </ul>
-</p>
-{% endblock after_header %}
+{% block title %}
+<title>{{ pelicula.titulo }}</title>
+{% endblock title %}
+
+{% block texto_header %}
+    {{ pelicula.titulo }}
+{% endblock texto_header %}
+
+{% block body %}
+
+<div class="subtitulo2"> <h4>
+    {{ pelicula.subtitulo }} </h4>
+</div>
+
+
+<div class="table">
+    <img src="{{ pelicula.imagen.url }}" alt="{{pelicula.titulo|safe}}" width="800" height="600">
+    <p>{{ pelicula.contenido|safe }}
+    </p>
+
+</div>
+
+
+
+<small>Por: {{ pelicula.autor }} - {{ pelicula.fecha_creacion }}</small>
+{% endblock body %}

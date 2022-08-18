@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+<title>Eliminar Mensaje</title>
+{% endblock title %}
+
+{% block texto_header %}
+    Eliminar Mensaje
+{% endblock texto_header %}
+
+
+{% block body %}
+<p>
+    <a href={% url 'listado_mensajes' %}>Listado de Mensajes</a>
+</p>
+
+<div class="form-group">
+    <form action={% url 'eliminar_mensaje' mensaje.id %} method="post">
+        {% csrf_token %}
+        ¿Desea eliminar el mensaje?
+        <button>Confirmar</button>
+    </form>
+</div>
+{% endblock %}

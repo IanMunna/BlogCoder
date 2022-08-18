@@ -1,5 +1,5 @@
 from django.contrib import admin
-from Accounts.models import MasDatosUsuario
+from .models import MasDatosUsuario
 
 # Register your models here.
 

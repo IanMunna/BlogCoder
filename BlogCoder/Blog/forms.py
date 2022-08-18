@@ -1,13 +1,19 @@
 from django import forms
-from ckeditor.fields import RichTextFormField
+from .models import Pelicula
 
-class PeliculaF(forms.Form):
-    titulo=forms.CharField(max_length=30)
-    trama=RichTextFormField()
-    fecha_estreno=forms.DateField(required=False)
-    imagen=forms.ImageField(required=False)
-    director=forms.CharField(max_length=30)
+class FormPelicula(forms.ModelForm):
+    class Meta:
+        model = Pelicula
+        fields = ('titulo', 'subtitulo', 'contenido', 'autor', 'fecha_creacion', 'imagen')
+        widgets = {
+            'titulo': forms.TextInput(attrs={'class': 'form-control'}),
+            'subtitulo': forms.TextInput(attrs={'class': 'form-control'}),
+            'contenido': forms.Textarea(attrs={'class': 'form-control'}),
+            'autor': forms.Select(attrs={'id': 'autor'}),
+            'fecha_creacion': forms.DateInput(attrs={'id': 'fecha'}),
+        }
 
-class BusquedaPelicula(forms.Form):
-    titulo = forms.CharField(max_length=30, required=False)
+
+class FormBusquedaPelicula(forms.Form):
+    titulo = forms.CharField(max_length=50, required=False)
     

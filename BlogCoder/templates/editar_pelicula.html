@@ -1,25 +1,30 @@
 {% extends 'base.html' %}
+
+
 {% block title %}
 <title>Editar Pelicula</title>
 {% endblock title %}
-{% block h1 %}
-<h1>
-    Editar Pelicula
-</h1>
-{% endblock h1 %}
 
-{% block after_header %}
+{% block texto_header %}
+    Editar Pelicula
+{% endblock texto_header %}
+
+
+{% block body %}
 <p>
-    <a href="{% url 'list_peliculas' %}">Volver</a>
+    <a href={% url 'list_peliculas' %}>Listado de Peliculas</a>
 </p>
-<p>
-    <form action="{% url 'editar_pelicula' pelicula.id %}" method="post" enctype='multipart/form-data'>
-        {% csrf_token %}
-        <table>
-            {{form.media}}
-            {{form.as_table}}
-        </table>
-        <button>Editar</button>
-    </form>
-</p>
-{% endblock after_header %}
+
+<div class="form-group">
+    <div style="width:800px;">
+        <form action={% url 'editar_pelicula' pelicula.id %} method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table>
+                {{form.as_p}}
+                {{form.media}}
+            </table>
+            <button>Editar</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

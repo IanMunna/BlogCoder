@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+<title>Enviar Mensaje</title>
+{% endblock title %}
+
+{% block texto_header %}
+    Enviar Mensaje
+{% endblock texto_header %}
+
+
+{% block body %}
+<ul>
+    <li>
+        <div class="form-group">
+            <div style="width:800px;">
+                <form action={% url 'enviar_mensaje' %} method="post" >
+                    {% csrf_token %}
+                    <table>
+                        {{form.as_p}}
+                        {{form.media}}
+                    </table>
+                    <button>Enviar</button>
+                </form>
+            </div>
+        </div>
+    </li>
+</ul>
+{% endblock %}
